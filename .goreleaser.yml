@@ -53,16 +53,6 @@ changelog:
     - '^docs:'
     - '^test:'
 
-s3:
-  -
-    bucket: goreleaser-pipeline
-    ids:
-    - gopipeline-archive
-    region: sfo2
-    folder: "{{ .ProjectName }}/{{ .Tag }}"
-    endpoint: "https://sfo2.digitaloceanspaces.com"
-    acl: public-read
-
 nfpms:
   -
     id: gopipeline-nfpms
@@ -81,3 +71,14 @@ nfpms:
     formats:
     - deb
     - rpm
+
+s3:
+  -
+    bucket: goreleaser-pipeline
+    ids:
+    - gopipeline-archive
+    - gopipeline-nfpms
+    region: sfo2
+    folder: "{{ .ProjectName }}/{{ .Tag }}"
+    endpoint: "https://sfo2.digitaloceanspaces.com"
+    acl: public-read
