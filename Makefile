@@ -5,7 +5,7 @@ release:
 
 .PHONY: dry-run
 dry-run:
-	goreleaser release --skip-publish
+	goreleaser release --rm-dist --skip-publish
 
 .PHONY: snapshot
 snapshot:
