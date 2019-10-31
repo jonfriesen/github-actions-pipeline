@@ -34,3 +34,14 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
+
+# s3 is technically deprecated by "blobs" which i can't get to work...
+s3:
+-
+  bucket: goreleaser-pipeline
+  ids:
+  - github-actions-pipeline
+  region: sfo2
+  folder: "{{ .ProjectName }}/{{ .Tag }}"
+  endpoint: "http://sfo2.digitaloceanspaces.com"
+  acl: public-read
