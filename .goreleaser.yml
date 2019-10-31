@@ -7,7 +7,10 @@ before:
     # you may remove this if you don't need go generate
     - go generate ./...
 builds:
-- main: ./cmd/go-pipeline/main.go
+- 
+  id: "gopipeline"
+  binary: gopipeline
+  main: ./cmd/go-pipeline/main.go
   env:
   - CGO_ENABLED=0
   - GO111MODULE=on
@@ -50,5 +53,5 @@ blobs:
     provider: s3
     bucket: goreleaser-pipeline
     ids:
-    - go-pipeline
+    - gopipeline
     folder: "{{ .ProjectName }}/{{ .Tag }}"
