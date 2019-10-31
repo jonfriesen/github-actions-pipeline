@@ -50,6 +50,5 @@ blobs:
     provider: s3
     bucket: goreleaser-pipeline
     ids:
-    - foo
-    - bar
+    - go-pipeline
     folder: "{{ .ProjectName }}/{{ .Tag }}"
