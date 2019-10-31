@@ -78,7 +78,7 @@ s3:
     # Endpoint allows you to set a custom endpoint, which is useful if you
     # want to push your artifacts to a minio server for example.
     # Default is AWS S3 URL.
-    endpoint: "http://sfo2.digitaloceanspaces.com"
+    endpoint: "https://sfo2.digitaloceanspaces.com"
 
     # Sets the ACL of the object using the specified canned ACL.
     # Default is private.
