@@ -19,7 +19,7 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [ ] Sign the binaries
 - [ ] Create Windows installer
 - [ ] Create Mac installer
-- [ ] Create Linux (Debian, Arch, CentOS, Generic) installers
+- [x] Create Linux (deb, rpm, generic) installers
 
 ## notes
 
