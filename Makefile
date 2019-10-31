@@ -1,4 +1,8 @@
 
+.PHONY: release
+release:
+	goreleaser release
+
 .PHONY: dry-run
 dry-run:
 	goreleaser release --skip-publish
