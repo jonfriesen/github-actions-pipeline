@@ -14,3 +14,7 @@ snapshot:
 .PHONY: run
 run:
 	./dist/github-actions-pipeline_linux_amd64/github-actions-pipeline
+
+.PHONY: clean
+clean:
+	@rm -rf dist

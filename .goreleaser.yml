@@ -75,9 +75,6 @@ nfpms:
 s3:
   -
     bucket: goreleaser-pipeline
-    ids:
-    - gopipeline-archive
-    - gopipeline-nfpms
     region: sfo2
     folder: "{{ .ProjectName }}/{{ .Tag }}"
     endpoint: "https://sfo2.digitaloceanspaces.com"
