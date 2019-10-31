@@ -8,7 +8,7 @@ before:
     - go generate ./...
 builds:
 - 
-  id: "gopipeline"
+  id: gopipeline
   binary: gopipeline
   main: ./cmd/go-pipeline/main.go
   env:
