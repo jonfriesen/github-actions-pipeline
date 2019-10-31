@@ -17,15 +17,25 @@ builds:
   - -X main.Minor={{ .Minor }}
   - -X main.Patch={{ .Patch }}
   - -X main.Label=release
+  goos:
+  - windows
+  - darwin
+  - linux
+  ignore:
+  - goos: darwin
+    goarch: 386
+
 archives:
-- replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
+- name_template: "go-pipeline-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  format_overrides:
+  - goos: windows
+    format: zip
+  files: [a-workaround-to-include-only-the-binary*]
+  wrap_in_directory: false
+
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "doctl-{{ .Version }}-checksums.sha256"
+
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
@@ -35,13 +45,11 @@ changelog:
     - '^docs:'
     - '^test:'
 
-# s3 is technically deprecated by "blobs" which i can't get to work...
-s3:
--
-  bucket: goreleaser-pipeline
-  ids:
-  - github-actions-pipeline
-  region: sfo2
-  folder: "{{ .ProjectName }}/{{ .Tag }}"
-  endpoint: "http://sfo2.digitaloceanspaces.com"
-  acl: public-read
+blobs:
+  -
+    provider: s3
+    bucket: goreleaser-pipeline
+    ids:
+    - foo
+    - bar
+    folder: "{{ .ProjectName }}/{{ .Tag }}"
