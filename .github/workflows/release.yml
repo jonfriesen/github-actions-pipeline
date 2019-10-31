@@ -1,10 +1,8 @@
 name: release
 on:
-  push:
+  create:
     tags:
     - 'v*.*.*'
-    branches:
-    - master
 
 jobs:
 
@@ -35,6 +33,12 @@ jobs:
       run: go test -failfast -race -covermode=atomic -coverprofile=coverage.txt -cover -json ./... | $HOME/go/bin/tparse
       env:
         GO111MODULE: on
+
+    - name: Validate GoReleaser
+      uses: goreleaser/goreleaser-action@v1
+      with:
+        version: latest
+        args: check
 
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v1
