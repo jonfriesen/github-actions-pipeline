@@ -49,37 +49,12 @@ changelog:
     - '^docs:'
     - '^test:'
 
-# blobs:
-#   -
-#     provider: s3
-#     bucket: goreleaser-pipeline
-#     ids:
-#     - gopipeline
-#     folder: "{{ .ProjectName }}/{{ .Tag }}"
 s3:
-  # You can have multiple s3 configs
   -
-    # Template for the bucket name(without the s3:// prefix)
-    # Default is empty.
     bucket: goreleaser-pipeline
-
-    # IDs of the artifacts you want to upload.
     ids:
     - gopipeline-archive
-
-    # AWS Region to use.
-    # Defaults is us-east-1
     region: sfo2
-
-    # Template for the path/name inside the bucket.
-    # Default is `{{ .ProjectName }}/{{ .Tag }}`
     folder: "{{ .ProjectName }}/{{ .Tag }}"
-
-    # Endpoint allows you to set a custom endpoint, which is useful if you
-    # want to push your artifacts to a minio server for example.
-    # Default is AWS S3 URL.
     endpoint: "https://sfo2.digitaloceanspaces.com"
-
-    # Sets the ACL of the object using the specified canned ACL.
-    # Default is private.
     acl: public-read
