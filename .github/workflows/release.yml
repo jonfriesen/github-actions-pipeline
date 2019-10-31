@@ -1,13 +1,13 @@
-name: build
+name: release
 on:
-  pull_request:
+  push:
     branches:
     - master
 
 jobs:
 
-  build:
-    name: Build
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
 
@@ -33,3 +33,11 @@ jobs:
       run: go test -failfast -race -covermode=atomic -coverprofile=coverage.txt -cover -json ./... | $HOME/go/bin/tparse
       env:
         GO111MODULE: on
+
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v1
+      with:
+        version: latest
+        args: release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
