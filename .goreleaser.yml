@@ -1,5 +1,4 @@
-# This is an example goreleaser.yaml file with some sane defaults.
-# Make sure to check the documentation at http://goreleaser.com
+project_name: gopipeline
 before:
   hooks:
     # you may remove this if you don't use vgo
@@ -29,7 +28,9 @@ builds:
     goarch: 386
 
 archives:
-- name_template: "go-pipeline-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+- 
+  id: gopipeline-archive
+  name_template: "go-pipeline-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
   format_overrides:
   - goos: windows
     format: zip
@@ -37,7 +38,7 @@ archives:
   wrap_in_directory: false
 
 checksum:
-  name_template: "doctl-{{ .Version }}-checksums.sha256"
+  name_template: "go-pipeline-{{ .Version }}-checksums.sha256"
 
 snapshot:
   name_template: "{{ .Tag }}-next"
@@ -64,7 +65,7 @@ s3:
 
     # IDs of the artifacts you want to upload.
     ids:
-    - gopipeline
+    - gopipeline-archive
 
     # AWS Region to use.
     # Defaults is us-east-1
