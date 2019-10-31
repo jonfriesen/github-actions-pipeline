@@ -1,7 +1,7 @@
 
 .PHONY: release
 release:
-	goreleaser release
+	goreleaser release --rm-dist 
 
 .PHONY: dry-run
 dry-run:
