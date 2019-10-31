@@ -11,9 +11,9 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 ## requirements
 
 - [x] GoReleaser builds binaries
-- [ ] GH Action to build go app for Linux, Mac, Windows
-- [ ] Run simple unit tests
-- [ ] Deploy binaries and checksum to GH Releases
+- [x] GH Action to build go app for Linux, Mac, Windows
+- [x] Run simple unit tests
+- [x] Deploy binaries and checksum to GH Releases
 - [ ] Deploy binaries and checksum to DigitalOcean Spaces
 - [ ] Create Docker image + upload to DockerHub
 - [ ] Sign the binaries
