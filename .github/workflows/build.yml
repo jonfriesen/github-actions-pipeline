@@ -38,4 +38,4 @@ jobs:
         GO111MODULE: on
 
     - name: Build
-      run: go build -v .
+      run: go build -v ./cmd/go-pipeline/main.go
