@@ -1,4 +1,4 @@
-project_name: gopipeline
+project_name: go-pipeline
 before:
   hooks:
     # you may remove this if you don't use vgo
@@ -30,7 +30,11 @@ builds:
 archives:
 - 
   id: gopipeline-archive
-  name_template: "go-pipeline-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  replacements:
+    amd64: 64-bit
+    386: 32-bit
+    darwin: macOS
   format_overrides:
   - goos: windows
     format: zip
@@ -38,7 +42,7 @@ archives:
   wrap_in_directory: false
 
 checksum:
-  name_template: "go-pipeline-{{ .Version }}-checksums.sha256"
+  name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.sha256"
 
 snapshot:
   name_template: "{{ .Tag }}-next"
@@ -58,3 +62,22 @@ s3:
     folder: "{{ .ProjectName }}/{{ .Tag }}"
     endpoint: "https://sfo2.digitaloceanspaces.com"
     acl: public-read
+
+nfpms:
+  -
+    id: gopipeline-nfpms
+    name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    builds:
+    - gopipeline
+    replacements:
+      amd64: 64-bit
+      386: 32-bit
+      darwin: macOS
+    vendor: Jon Friesen
+    homepage: https://github.com/jonfriesen/github-actions-pipeline
+    maintainer: Jon Friesen <jon@jonfriesen.ca>
+    description: GoReleaser + GitHub Actions pipeline for Go CLI projects
+    license: MIT
+    formats:
+    - deb
+    - rpm
