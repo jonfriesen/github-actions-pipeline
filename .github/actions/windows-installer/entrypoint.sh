@@ -23,6 +23,7 @@ cp $GITHUB_WORKSPACE/dist/gopipeline_windows_amd64/gopipeline.exe /bundle/gopipe
 ls
 
 # Go to installer directory
+mkdir /installer
 cd /installer
 
 # Copy configs to core installer
