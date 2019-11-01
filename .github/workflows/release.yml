@@ -46,6 +46,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        asset_path: ./dist/GoPipelineInstaller.exe
-        asset_name: GoPipelineInstaller.exe
+        asset_path: ./dist/GoPipelineSetup.exe
+        asset_name: GoPipelineSetup.exe
         asset_content_type: application/zip
