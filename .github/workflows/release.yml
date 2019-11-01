@@ -41,7 +41,7 @@ jobs:
 
     - name: Upload Windows Installer
       id: upload-release-asset 
-      uses: jonfriesen/upload-release-asset@v1.0.4
+      uses: jonfriesen/upload-release-asset@v1.0.5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
