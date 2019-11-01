@@ -38,3 +38,10 @@ jobs:
     
     - name: Build Windows Installer
       uses: ./.github/actions/windows-installer
+
+    - name: Add Windows Installer to Release
+      uses: Shopify/upload-to-release
+        with:
+          name: GoPipelineInstaller.exe
+          path: dist/GoPipelineSetup.exe
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
