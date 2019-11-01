@@ -72,10 +72,10 @@ nfpms:
     - deb
     - rpm
 
-s3:
-  -
-    bucket: goreleaser-pipeline
-    region: sfo2
-    folder: "{{ .ProjectName }}/{{ .Tag }}"
-    endpoint: "https://sfo2.digitaloceanspaces.com"
-    acl: public-read
+# s3:
+#   -
+#     bucket: goreleaser-pipeline
+#     region: sfo2
+#     folder: "{{ .ProjectName }}/{{ .Tag }}"
+#     endpoint: "https://sfo2.digitaloceanspaces.com"
+#     acl: public-read
