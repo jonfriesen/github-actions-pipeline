@@ -1,8 +1,8 @@
 #!/bin/sh
 
-#set -e
-#set -x
-set -o pipefail
+set -e
+# set -x
+# set -exo pipefail
 
 if [[ -z "$GITHUB_WORKSPACE" ]]; then
   echo "Set the GITHUB_WORKSPACE env variable."
