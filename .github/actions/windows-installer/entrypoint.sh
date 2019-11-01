@@ -20,7 +20,7 @@ mkdir /bundle
 cp $GITHUB_WORKSPACE/dist/gopipeline_windows_amd64/gopipeline.exe /bundle/gopipeline.exe
 
 # Debugging
-ls
+ls /bundle
 
 # Go to installer directory
 mkdir /installer
@@ -28,7 +28,7 @@ cd /installer
 
 # Copy configs to core installer
 echo "--> copy installer configs"
-cp $GITHUB_WORKSPACE/.github/installers/windows /installer
+cp -r $GITHUB_WORKSPACE/.github/installers/windows/* /installer/
 
 # Debugging
 ls
