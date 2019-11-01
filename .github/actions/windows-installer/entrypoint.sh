@@ -34,6 +34,9 @@ cp -r $GITHUB_WORKSPACE/.github/installers/windows/* /installer/
 ls
 
 echo "--> create installer"
+# Hack because default home is not owned by us
+mkdir /tmphome
+export HOME=/tmphome
 # TODO get current tag & update the end of this
 wine ../innosetup/ISCC.exe core.iss /DMyAppVersion=v0.0.0
 
