@@ -17,8 +17,12 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [x] Deploy binaries and checksum to DigitalOcean Spaces
 - [ ] Create Docker image + upload to DockerHub
 - [ ] Sign the binaries
-- [ ] Create Windows installer
+- [x] Create Windows installer
+- [x] Add Windows installer to GH release assets
+- [ ] Add Windows installer to S3
 - [ ] Create Mac installer
+- [ ] Add Mac installer to GH release assets
+- [ ] Add Mac installer to S3
 - [x] Create Linux (deb, rpm, generic) installers
 
 ## notes
@@ -27,3 +31,5 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 The `s3` param in goreleaser is deprecated (still works... for now), I could not get the `blobs` param working. Make sure you setup the key/secret in the github settings with the following names:
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
+
+Two methods for putting binaries in Spaces, via GoReleaser (see .goreleaser.yml the "s3" section) and as part of the GH Actions workflow (not implemented as of today). 
