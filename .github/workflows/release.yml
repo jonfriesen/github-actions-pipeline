@@ -39,13 +39,31 @@ jobs:
     - name: Build Windows Installer
       uses: ./.github/actions/windows-installer
 
-    - name: Upload Windows Installer
-      id: upload-release-asset 
-      uses: jonfriesen/upload-release-asset@v1.0.17
+    - name: Get Release by Tag
+      id: get_release_by_tag
+      uses: jonfriesen/get-release-by-tag@v0.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_by_tag.outputs.release.data.upload_url }}
         asset_path: dist/GoPipelineSetup.exe
         asset_name: GoPipelineSetup.exe
         asset_content_type: application/zip
+    # - name: Upload Windows Installer
+    #   id: upload-release-asset 
+    #   uses: jonfriesen/upload-release-asset@v1.0.17
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: ${{ github.ref }}
+    #     asset_path: dist/GoPipelineSetup.exe
+    #     asset_name: GoPipelineSetup.exe
+    #     asset_content_type: application/zip
