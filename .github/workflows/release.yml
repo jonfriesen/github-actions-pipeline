@@ -36,6 +36,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      # Note: this action creates the upload_url and formatted_tag outputs used below
     - name: Get Release by Tag
       id: get_release_by_tag
       uses: jonfriesen/get-release-by-tag@v0.0.11
@@ -46,7 +47,13 @@ jobs:
     
     - name: Build Windows Installer
       uses: ./.github/actions/windows-installer
+      env:
+        TAG_NAME: ${{ steps.get_release_by_tag.outputs.formatted_tag }}
 
+    - name: Build MacOS Installer
+      uses: ./.github/actions/mac-installer
+
+#     Release Windows binaries and installers to S3 & GitHub
     - name: Release Windows Installer to GitHub
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1.0.1
@@ -58,7 +65,6 @@ jobs:
         asset_name: GoPipelineSetup.exe
         asset_content_type: application/zip
 
-#     Release Windows binaries and installers to S3
     - name: Release Windows Installer to S3
       uses: ./.github/actions/s3cmd-cp
       with:

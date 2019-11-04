@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pkg-info overwrite-permissions="true" relocatable="false" identifier="com.digitalocean.mako.pkg.mako" postinstall-action="none" version="%MAKO_VERSION%" format-version="2" generator-version="1" install-location="/" auth="root">
+    <payload numberOfFiles="%MAKO_NUMBER_OF_FILES%" installKBytes="%MAKO_INSTALL_KBYTES%"/>
+    <bundle-version/>
+    <upgrade-bundle/>
+    <update-bundle/>
+    <atomic-update-bundle/>
+    <strict-identifier/>
+    <relocate/>
+</pkg-info>

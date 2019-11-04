@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<installer-gui-script minSpecVersion="1">
+    <title>mako_title</title>
+    <options customize="allow" allow-external-scripts="yes" rootVolumeOnly="true" hostArchitectures="x86_64"/>
+    <background file="nanobox.png" alignment="bottomleft" scaling="none"/>
+    <welcome file="welcome.rtfd" mime-type="text/rtfd"/>
+    <choices-outline>
+        <line choice="choiceMako"/>
+    </choices-outline>
+    <choice id="choiceMako" title="choiceMako_title" description="choiceMako_msg" start_enabled="false" start_selected="true" start_visible="true">
+        <pkg-ref id="com.digitalocean.mako.pkg.mako"/>
+    </choice>
+    <pkg-ref id="com.digitalocean.mako.pkg.mako" auth="Root" version="%MAKO_VERSION%" installKBytes="%MAKO_INSTALL_KBYTES%">#mako.pkg</pkg-ref>
+    <pkg-ref id="com.digitalocean.mako.pkg.mako">
+        <bundle-version/>
+    </pkg-ref>
+
+    <product id="com.digitalocean.mako.pkg.mako" version="%INSTALLER_VERSION%"/>
+
+    <installation-check script="checkPrerequisite()"/>
+    <script>
+    <![CDATA[
+    /* js:pkmk:start */
+    function checkPrerequisite()
+    {
+       try
+       {
+           test = system.sysctl('hw.machine');
+           system.log("Hardware architecture detected: " + test);
+           result = (test == 'i386' || test == 'x86_64');
+       } catch (e) { system.log(e); result = false; }
+
+       if (!result)
+       {
+           my.result.type = 'Fatal';
+           my.result.title = system.localizedString('UNSUPPORTED_HW_MACHINE_TLE');
+           my.result.message = system.localizedString('UNSUPPORTED_HW_MACHINE_MSG');
+           return result;
+       }
+
+       try
+       {
+           test = system.version['ProductVersion'];
+           system.log("OS version detected: " + test);
+           result = (system.compareVersions(test, '10.8') >= 0);
+       } catch (e) { system.log(e); result = false; }
+
+       if (!result)
+       {
+           my.result.type = 'Fatal';
+           my.result.title = system.localizedString('UNSUPPORTED_OS_TLE');
+           my.result.message = system.localizedString('UNSUPPORTED_OS_MSG');
+           return result;
+       }
+
+       system.log("result:" + result);
+       return result;
+     }
+     /* js:pkmk:end */
+     ]]>
+    </script>
+</installer-gui-script>

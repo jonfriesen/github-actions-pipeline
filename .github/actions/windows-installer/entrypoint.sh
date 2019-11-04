@@ -38,7 +38,7 @@ echo "--> create installer"
 mkdir /tmphome
 export HOME=/tmphome
 # TODO get current tag & update the end of this
-wine ../innosetup/ISCC.exe core.iss /DMyAppVersion=v0.0.0
+wine ../innosetup/ISCC.exe core.iss /DMyAppVersion=$TAG_NAME
 
 echo "--> copy generated installer back to dist"
 cp /installer/Output/GoPipelineSetup.exe $GITHUB_WORKSPACE/dist/
