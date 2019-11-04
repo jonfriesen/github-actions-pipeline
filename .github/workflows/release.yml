@@ -58,7 +58,7 @@ jobs:
         asset_name: GoPipelineSetup.exe
         asset_content_type: application/zip
     - name: Upload binary to S3 bucket
-      uses: jonfriesen/s3-sync-action@v0.2.1
+      uses: tpaschalis/s3-sync-action@master
       with:
         args: --acl public-read
       env:
