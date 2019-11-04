@@ -24,8 +24,7 @@ builds:
   - darwin
   - linux
   ignore:
-  - goos: darwin
-    goarch: 386
+  - goarch: 386
 
 archives:
 - 
@@ -33,7 +32,6 @@ archives:
   name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
   replacements:
     amd64: 64-bit
-    386: 32-bit
     darwin: macOS
   format_overrides:
   - goos: windows

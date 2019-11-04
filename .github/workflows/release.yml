@@ -47,7 +47,7 @@ jobs:
     - name: Build Windows Installer
       uses: ./.github/actions/windows-installer
 
-    - name: Upload Release Asset
+    - name: Release Windows Installer to GitHub
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1.0.1
       env:
@@ -58,13 +58,76 @@ jobs:
         asset_name: GoPipelineSetup.exe
         asset_content_type: application/zip
 
-    - name: Upload binary to S3 bucket
+#     Release Windows binaries and installers to S3
+    - name: Release Windows Installer to S3
       uses: ./.github/actions/s3cmd-cp
       with:
         args: --acl-public
       env:
         LOCAL_FILE: dist/GoPipelineSetup.exe
-        REMOTE_FILE: go-pipeline/${{ steps.get_release_by_tag.outputs.formatted_tag }}/GoPipelineSetup.exe
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/windows/GoPipelineSetup.exe
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
+    - name: Release Windows Zip to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-windows-64-bit.zip
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/windows/go-pipeline.zip
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+#     Release macOS binaries and installers to S3
+    - name: Release MacOS Tar to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-macOS-64-bit.tar.gz
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/macos/go-pipeline.tar.gz
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+#     Release Linux binaries and installers to S3
+    - name: Release Linux deb to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.deb
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.deb
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Release Linux rpm to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.rpm
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.rpm
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Release Linux tar to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.tar.gz
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.tar.gz
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
         AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
