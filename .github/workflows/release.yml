@@ -55,7 +55,7 @@ jobs:
 
 #     Release Windows binaries and installers to S3 & GitHub
     - name: Release Windows Installer to GitHub
-      id: upload-release-asset 
+      id: upload-release-asset-windows
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -90,8 +90,8 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 #     Release macOS binaries and installers to S3 and GitHub
-    - name: Release Windows Installer to GitHub
-      id: upload-release-asset 
+    - name: Release MacOS Installer to GitHub
+      id: upload-release-asset-macos
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
