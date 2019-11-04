@@ -20,43 +20,43 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v1
 
-    # - name: Validate GoReleaser
-    #   uses: goreleaser/goreleaser-action@v1
-    #   with:
-    #     version: latest
-    #     args: check
+    - name: Validate GoReleaser
+      uses: goreleaser/goreleaser-action@v1
+      with:
+        version: latest
+        args: check
 
-    # - name: Run GoReleaser
-    #   uses: goreleaser/goreleaser-action@v1
-    #   with:
-    #     version: latest
-    #     args: release
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v1
+      with:
+        version: latest
+        args: release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
-    # - name: Build Windows Installer
-    #   uses: ./.github/actions/windows-installer
+    - name: Build Windows Installer
+      uses: ./.github/actions/windows-installer
 
-    # - name: Get Release by Tag
-    #   id: get_release_by_tag
-    #   uses: jonfriesen/get-release-by-tag@v0.0.6
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     tag_name: ${{ github.ref }}
+    - name: Get Release by Tag
+      id: get_release_by_tag
+      uses: jonfriesen/get-release-by-tag@v0.0.6
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
 
-    # - name: Upload Release Asset
-    #   id: upload-release-asset 
-    #   uses: actions/upload-release-asset@v1.0.1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.get_release_by_tag.outputs.upload_url }}
-    #     asset_path: dist/GoPipelineSetup.exe
-    #     asset_name: GoPipelineSetup.exe
-    #     asset_content_type: application/zip
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_by_tag.outputs.upload_url }}
+        asset_path: dist/GoPipelineSetup.exe
+        asset_name: GoPipelineSetup.exe
+        asset_content_type: application/zip
 
     - name: Upload binary to S3 bucket
       uses: ./.github/actions/s3cmd-cp
@@ -64,7 +64,6 @@ jobs:
         args: --acl public-read
       env:
         FILE: dist/GoPipelineSetup.exe
-        AWS_REGION: 'sfo2'
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
