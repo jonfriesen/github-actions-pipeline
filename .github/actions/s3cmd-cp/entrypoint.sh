@@ -2,21 +2,15 @@
 
 set -e
 
-# mkdir -p ~/.aws
-# touch ~/.aws/credentials
+# Create basic config for s3cmd
+echo "[default]
+access_key = ${AWS_ACCESS_KEY_ID}
+bucket_location = sfo2
+check_ssl_certificate = True
+check_ssl_hostname = True
+guess_mime_type = True
+host_base = ${AWS_ENDPOINT}
+host_bucket = %(bucket)s.${AWS_ENDPOINT}
+secret_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.s3cfg
 
-# echo "[default]
-# aws_access_key_id = ${AWS_ACCESS_KEY_ID}
-# aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
-
-# aws s3 cp ${FILE} s3://${AWS_S3_BUCKET} \
-#             --endpoint-url ${AWS_ENDPOINT:-amazonaws.com}
-#             --region ${AWS_REGION} $*
-
-# rm -rf ~/.aws
-
-s3cmd --access_key=${AWS_ACCESS_KEY_ID} \
-      --secret_key=${AWS_SECRET_ACCESS_KEY} \
-      --host=${AWS_ENDPOINT} \
-      --region=${AWS_REGION} \
-      ls s3://${AWS_S3_BUCKET}
+s3cmd ls
