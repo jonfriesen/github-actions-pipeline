@@ -13,4 +13,6 @@ host_base = ${AWS_ENDPOINT}
 host_bucket = %(bucket)s.${AWS_ENDPOINT}
 secret_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.s3cfg
 
-s3cmd ls
+echo "Uploading file to ${AWS_BUCKET} at ${AWS_ENDPOINT}"
+
+s3cmd put ${LOCAL_FILE} ${REMOTE_FILE} $*
