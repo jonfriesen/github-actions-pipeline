@@ -29,7 +29,7 @@ builds:
 archives:
 - 
   id: gopipeline-archive
-  name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
   replacements:
     amd64: 64-bit
     darwin: macOS
@@ -40,7 +40,7 @@ archives:
   wrap_in_directory: false
 
 checksum:
-  name_template: "{{ .ProjectName }}-{{ .Version }}-checksums.sha256"
+  name_template: "{{ .ProjectName }}-v{{ .Version }}-checksums.sha256"
 
 snapshot:
   name_template: "{{ .Tag }}-next"
@@ -54,7 +54,7 @@ changelog:
 nfpms:
   -
     id: gopipeline-nfpms
-    name_template: "{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
     builds:
     - gopipeline
     replacements:
