@@ -76,8 +76,6 @@ jobs:
         AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      
-    - run: ls -la dist/
     
     - name: Release Windows Zip to S3
       uses: ./.github/actions/s3cmd-cp
@@ -91,7 +89,30 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-#     Release macOS binaries and installers to S3
+#     Release macOS binaries and installers to S3 and GitHub
+    - name: Release Windows Installer to GitHub
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_by_tag.outputs.upload_url }}
+        asset_path: dist/GoPipeline.pkg
+        asset_name: GoPipeline.pkg
+        asset_content_type: application/zip
+        
+    - name: Release MacOS Installer to S3
+      uses: ./.github/actions/s3cmd-cp
+      with:
+        args: --acl-public
+      env:
+        LOCAL_FILE: dist/GoPipeline.pkg
+        REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/macos/GoPipeline.pkg
+        AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
+        AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     - name: Release MacOS Tar to S3
       uses: ./.github/actions/s3cmd-cp
       with:
