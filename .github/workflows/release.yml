@@ -41,7 +41,7 @@ jobs:
 
     - name: Get Release by Tag
       id: get_release_by_tag
-      uses: jonfriesen/get-release-by-tag@v0.0.1
+      uses: jonfriesen/get-release-by-tag@v0.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
