@@ -16,7 +16,7 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [x] Deploy binaries and checksum to GH Releases
 - [x] Deploy binaries and checksum to DigitalOcean Spaces
 - [ ] Create Docker image + upload to DockerHub
-- [ ] Sign the binaries
+- [x] Sign the binaries
 - [x] Create Windows installer
 - [x] Add Windows installer to GH release assets
 - [x] Add Windows installer to S3
