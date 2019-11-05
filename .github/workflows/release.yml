@@ -50,6 +50,13 @@ jobs:
       env:
         TAG_NAME: ${{ steps.get_release_by_tag.outputs.formatted_tag }}
 
+    - name: Sign Windows Installer
+      uses: ./.github/actions/windows-signer
+      env:
+        NAME: GoPipeline
+        DOMAIN: https://github.com/jonfriesen/github-actions-pipeline
+        BINARY: dist/GoPipelineSetup.exe
+
     - name: Build MacOS Installer
       uses: ./.github/actions/mac-installer
 

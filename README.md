@@ -20,9 +20,9 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [x] Create Windows installer
 - [x] Add Windows installer to GH release assets
 - [x] Add Windows installer to S3
-- [ ] Create Mac installer
-- [ ] Add Mac installer to GH release assets
-- [ ] Add Mac installer to S3
+- [x] Create Mac installer
+- [x] Add Mac installer to GH release assets
+- [x] Add Mac installer to S3
 - [x] Create Linux (deb, rpm, generic) installers
 
 ## notes
