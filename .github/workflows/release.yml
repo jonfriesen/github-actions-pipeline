@@ -56,6 +56,8 @@ jobs:
         NAME: GoPipeline
         DOMAIN: https://github.com/jonfriesen/github-actions-pipeline
         BINARY: dist/GoPipelineSetup.exe
+        WINDOWS_CERT: ${{ secret.WINDOWS_CERT }}
+        WINDOWS_KEY: ${{ secret.WINDOWS_KEY }}
 
     - name: Build MacOS Installer
       uses: ./.github/actions/mac-installer
