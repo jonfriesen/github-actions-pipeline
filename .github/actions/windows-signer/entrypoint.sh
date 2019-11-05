@@ -9,8 +9,9 @@ fi
 
 echo "--> outputting cert and key to files"
 mkdir /certs
-echo ${WINDOWS_CERT} > /certs/bundle.crt
-echo ${WINDOWS_KEY} > /certs/codesign.key
+# The quotations around the cert/key vars are very import to handle line breaks
+echo "${WINDOWS_CERT}" > /certs/bundle.crt
+echo "${WINDOWS_KEY}" > /certs/codesign.key
 
 echo "--> signing binary"
 /osslsigncode/osslsigncode-1.7.1/osslsigncode sign -certs /certs/bundle.crt -key /certs/codesign.key -h sha256 -n ${NAME} -i ${DOMAIN} -t "http://timestamp.verisign.com/scripts/timstamp.dll" -in ${BINARY} -out /signedbinary
