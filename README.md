@@ -16,7 +16,9 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [x] Deploy binaries and checksum to GH Releases
 - [x] Deploy binaries and checksum to DigitalOcean Spaces
 - [ ] Create Docker image + upload to DockerHub
-- [x] Sign the binaries
+- [ ] Sign GoReleaser generated binaries with gpg2??
+- [ ] Sign mac binaries
+- [x] Sign windows the binaries
 - [x] Create Windows installer
 - [x] Add Windows installer to GH release assets
 - [x] Add Windows installer to S3
@@ -24,6 +26,17 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [x] Add Mac installer to GH release assets
 - [x] Add Mac installer to S3
 - [x] Create Linux (deb, rpm, generic) installers
+
+## future
+- [ ] move actions to their own repos
+    - [ ] mac-installer
+    - [ ] windows-installer
+    - [ ] s3cmd-cp
+    - [ ] windows-signer
+- [ ] make windows-installer config oriented
+- [ ] make mac-installer config oriented
+- [ ] add multifile support to s3cmd-cp
+- [ ] improve readme explaining each step with samples
 
 ## notes
 
