@@ -58,6 +58,8 @@ jobs:
         BINARY: dist/GoPipelineSetup.exe
         WINDOWS_CERT: ${{ secrets.WINDOWS_CERT }}
         WINDOWS_KEY: ${{ secrets.WINDOWS_KEY }}
+        
+    - run: ls -la dist/
 
     - name: Build MacOS Installer
       uses: ./.github/actions/mac-installer
