@@ -77,7 +77,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Release Windows Installer to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -90,7 +90,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
     - name: Release Windows Zip to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -115,7 +115,7 @@ jobs:
         asset_content_type: application/zip
         
     - name: Release MacOS Installer to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -128,7 +128,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release MacOS Tar to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -142,7 +142,7 @@ jobs:
 
 #     Release Linux binaries and installers to S3
     - name: Release Linux deb to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -155,7 +155,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release Linux rpm to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
@@ -168,7 +168,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release Linux tar to S3
-      uses: jonfriesen/s3-put-action@v0.0.2
+      uses: jonfriesen/s3-put-action@v0.0.3
       with:
         args: --acl-public
       env:
