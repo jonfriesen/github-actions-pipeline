@@ -77,10 +77,11 @@ jobs:
         asset_content_type: application/zip
 
     - name: Release Windows Installer to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/GoPipelineSetup.exe
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/windows/GoPipelineSetup.exe
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -89,10 +90,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
     - name: Release Windows Zip to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-windows-64-bit.zip
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/windows/go-pipeline.zip
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -113,10 +115,11 @@ jobs:
         asset_content_type: application/zip
         
     - name: Release MacOS Installer to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/GoPipeline.pkg
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/macos/GoPipeline.pkg
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -125,10 +128,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release MacOS Tar to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-macOS-64-bit.tar.gz
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/macos/go-pipeline.tar.gz
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -138,10 +142,11 @@ jobs:
 
 #     Release Linux binaries and installers to S3
     - name: Release Linux deb to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.deb
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.deb
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -150,10 +155,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release Linux rpm to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.rpm
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.rpm
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
@@ -162,10 +168,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Release Linux tar to S3
-      uses: jonfriesen/s3-put-action@v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.2
       with:
         args: --acl-public
       env:
+        INCLUDE_MD5: true
         LOCAL_FILE: dist/go-pipeline-${{ steps.get_release_by_tag.outputs.formatted_tag }}-linux-64-bit.tar.gz
         REMOTE_FILE: downloads/${{ steps.get_release_by_tag.outputs.formatted_tag }}/linux/go-pipeline.tar.gz
         AWS_ENDPOINT: ${{ secrets.AWS_ENDPOINT }}
