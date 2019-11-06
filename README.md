@@ -31,7 +31,7 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
 - [ ] move actions to their own repos
     - [ ] mac-installer
     - [ ] windows-installer
-    - [ ] s3cmd-cp
+    - [x] s3cmd-cp
     - [ ] windows-signer
 - [ ] make windows-installer config oriented
 - [ ] make mac-installer config oriented
