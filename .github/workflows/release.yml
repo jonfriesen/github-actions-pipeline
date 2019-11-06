@@ -77,7 +77,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Release Windows Installer to S3
-      uses: jonfriesen/s3-put-action:v0.0.1
+      uses: jonfriesen/s3-put-action@v0.0.1
       with:
         args: --acl-public
       env:
