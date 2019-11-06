@@ -51,7 +51,7 @@ jobs:
         TAG_NAME: ${{ steps.get_release_by_tag.outputs.formatted_tag }}
 
     - name: Sign Windows Installer
-      uses: ./.github/actions/windows-signer
+      uses: jonfriesen/windows-signer-action@v0.0.1
       env:
         NAME: GoPipeline
         DOMAIN: https://github.com/jonfriesen/github-actions-pipeline

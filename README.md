@@ -32,7 +32,7 @@ This project is to learn how to build out a Go CLI CI/CD platform using GoReleas
     - [ ] mac-installer
     - [ ] windows-installer
     - [x] s3cmd-cp
-    - [ ] windows-signer
+    - [x] windows-signer
 - [ ] make windows-installer config oriented
 - [ ] make mac-installer config oriented
 - [ ] add multifile support to s3cmd-cp
