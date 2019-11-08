@@ -1,6 +1,6 @@
 # github-actions-pipeline
 This project is to learn how to build out a Go CLI CI/CD platform using GoReleaser and GitHub Actions
-
+test
 ## learning objectives
 
 - familiarize myself with GoReleaser
